@@ -40,7 +40,7 @@ class Sun {
     ellipse(x, y, this.r, this.r);    // Objektets form
   }
 
-  void position() {
+  void position() {    // Void til at give den mulige sammensatte class en position som følger musens x, y
     x = mouseX;
     y = mouseY;
   }
@@ -53,10 +53,10 @@ class Sun {
   boolean overlap(Sun other) {    // Overlap boolean, som skal beskrive hvad der sker når diverse classes overlapper hinanden
     float d = dist(x, y, other.x, other.y);    // Float som beskriver distancen mellem x, y og det andet objekts x, y
     if ( d <= r + other.r) {    // If funktion som siger at hvis distancen d er mindre end radius + radius af andet objekt, så skal der ske noget
-      sc = #FF1500;
+      sc = #FF1500;    // SC som er farven for sunColour bliver lavet om til rød når classes overlapper
       return true;
     } else {
-      sc = #F5DD00;
+      sc = #F5DD00;    // SC som er farven for sunColour bliver lave tom til rød når classes overlapper 
       return false;
     }
   }
@@ -74,13 +74,13 @@ class Sun {
       SpeedY *= -1;
     }
   }
-  
+
   void reset() {    // Hvilke ting der skal gælde når funktionen reset bliver kaldt
-   x = random (width);    // X koordinat
-   y = random (height);    // Y koordinat
-   SpeedX = random(-5, 5);    // Hastigheden på SpeedX
-   SpeedY = random(-5, 5);    // Hastigheden på SpeedY
-   rayColour = #F5DD00;    // Farven på rayColour
-   sc = #F5DD00;    // Farven på sc
+    x = random (width);    // X koordinat
+    y = random (height);    // Y koordinat
+    SpeedX = random(-5, 5);    // Hastigheden på SpeedX
+    SpeedY = random(-5, 5);    // Hastigheden på SpeedY
+    rayColour = #F5DD00;    // Farven på rayColour
+    sc = #F5DD00;    // Farven på sc
   }
 }

@@ -21,7 +21,7 @@ class Flower {
   }
 
   void display () {    // Fortæller hvad der skal vises når display funktionen bliver kaldt
-  
+
     // Lokale float variabler
     float CenterX;
     float CenterY;  
@@ -72,7 +72,7 @@ class Flower {
   }
 
   boolean overlaps(Flower other) {    // Overlap boolean, som skal beskrive hvad der sker når diverse classes overlapper hinanden
-  float d = dist(x, y, other.x, other.y);    // Giver distance sin egen varaibel
+    float d = dist(x, y, other.x, other.y);    // Giver distance sin egen varaibel
     if ( d <= this.r + this.r/2 + other.r + other.r/2 ) {    // Overlapning bliver beregnet ud fra centrum, hvis den tegnede radius + den anden tegnede radius distance fra hinanden er mindre end d, så skal de skubbes væk.
       petalColor = int(random(#000000, #FFFFFF));    // Farven skiftes på bladende når en blomst kollidere med en anden blomst
       SpeedX *= -1;    // Hastigheden på blomsten bliver omvendt og giver illusionen at objektet kollidere med hinanden
