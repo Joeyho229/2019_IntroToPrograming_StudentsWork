@@ -29,7 +29,7 @@ class Flower {
     stroke(0);
     strokeWeight(1);
     fill(petalColor);    // Farven for bladende
-    for (float i=0; i<PI*2; i+=2*PI/n_petals) {    // Array for bladende
+    for (float i=0; i<PI * 2; i += 2 * PI / n_petals) {    // Array for bladende
       CenterX = x + r*cos(i);
       CenterY = y + r*sin(i);
 
@@ -37,7 +37,7 @@ class Flower {
     }
 
     fill(200, 255, 50);
-    ellipse(x, y, r*1.2, r*1.2);
+    ellipse(x, y, r * 1.2, r * 1.2);
   }
 
   // Der laves en move class.
@@ -50,7 +50,7 @@ class Flower {
     if (x >= width - 1.5 * r || x <= 0 + 1.5 * r) {    // If funktion for hvad der sker når X-koordinaterne rammer siderne
       SpeedX *= -1;    // Hastigheden på SpeedX når funktionen er opfyldt
     }
-    if (y >= height - 1.5*r || y <= 0 + 1.5 * r) {    // If funktion for hvad der sker når Y-koordinaterne rammer siderne
+    if (y >= height - 1.5 * r || y <= 0 + 1.5 * r) {    // If funktion for hvad der sker når Y-koordinaterne rammer siderne
       SpeedY *= -1;    // Hastigheden på SpeedY når funktionen er opfyldt
     }
     return SpeedX;
@@ -82,8 +82,8 @@ class Flower {
   }
 
   void reset() {    // Funktionen beskriver hvad der skal ske når reset bliver kaldt
-    x = random(100, 1400);    // Blomsternes X-værdi bliver til random imellem 100 til 1400
-    y = random(100, 1400);    // BLomsternes Y-værdi bliver til random imellem 100 til 1400
+    x = random(100, width - 100);    // Blomsternes X-værdi bliver til random imellem 100 til 1400
+    y = random(100, width - 100);    // BLomsternes Y-værdi bliver til random imellem 100 til 1400
     SpeedX = random(-5, 10);    // Hastigheden på SpeedX bliver random imellem -5 til 10
     SpeedY = random(-5, 10);    // Hastigheden på SpeedY bliver random imellem -5 til 10
     petalColor = #FF9500;    // Farven på petalColor

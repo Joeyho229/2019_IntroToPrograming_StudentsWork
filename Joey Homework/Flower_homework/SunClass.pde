@@ -12,13 +12,13 @@ class Sun {
   int sc;
   int n_rays;
 
-  Sun(int temp_x, int temp_y, float temp_size, int temp_colour, int temp_rayColour, int temp_n_petals) {    // Skabelon for sun class
+  Sun(float temp_x, float temp_y, float temp_size, int temp_colour, int temp_rayColour, int temp_n_rays) {    // Skabelon for sun class
     x = temp_x;
     y = temp_y;
     r = temp_size;
     sc = temp_colour;
     rayColour = temp_rayColour;
-    n_rays = temp_n_petals;
+    n_rays = temp_n_rays;
   }
 
   void display() {    // Hvilke ting display funktionen skal indeholde
@@ -76,8 +76,8 @@ class Sun {
   }
 
   void reset() {    // Hvilke ting der skal gælde når funktionen reset bliver kaldt
-    x = random (width);    // X koordinat
-    y = random (height);    // Y koordinat
+    x = random (100, width - 100);    // X koordinat
+    y = random (100, height - 100);    // Y koordinat
     SpeedX = random(-5, 5);    // Hastigheden på SpeedX
     SpeedY = random(-5, 5);    // Hastigheden på SpeedY
     rayColour = #F5DD00;    // Farven på rayColour
