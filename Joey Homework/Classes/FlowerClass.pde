@@ -65,12 +65,6 @@ class Flower {
     }
   }
 
-  void Fname() {    // Void til at give navne
-    textSize(24);    // Tekst størrelsen som skal vises
-    fill(#000000);    // Farven som teksten skal vises i
-    text("Flower", this.x - this.r, this.y - this.r*2);    // Teksten som der skal vises
-  }
-
   boolean overlaps(Flower other) {    // Overlap boolean, som skal beskrive hvad der sker når diverse classes overlapper hinanden
     float d = dist(x, y, other.x, other.y);    // Giver distance sin egen varaibel
     if ( d <= this.r + this.r/2 + other.r + other.r/2 ) {    // Overlapning bliver beregnet ud fra centrum, hvis den tegnede radius + den anden tegnede radius distance fra hinanden er mindre end d, så skal de skubbes væk.

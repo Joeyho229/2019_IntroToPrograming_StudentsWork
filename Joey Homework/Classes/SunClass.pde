@@ -40,14 +40,9 @@ class Sun {
     ellipse(x, y, this.r, this.r);    // Objektets form
   }
 
-  void position() {    // Void til at give den mulige sammensatte class en position som følger musens x, y
+  void MousePosition() {    // Void til at give den mulige sammensatte class en position som følger musens x, y
     x = mouseX;
     y = mouseY;
-  }
-  void Fname() {    // Void til at give navne
-    textSize(24);    // Tekst størrelsen som skal vises
-    fill(#000000);    // Farven som teksten skal vises i
-    text("Sun", this.x - r/5, this.y);    // Teksten som der skal vises
   }
 
   boolean overlap(Sun other) {    // Overlap boolean, som skal beskrive hvad der sker når diverse classes overlapper hinanden
