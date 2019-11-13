@@ -39,6 +39,10 @@ float [] colour = new float[4];    // Array for colour
   colour[3] = random(0, 255);
 }
 
+int num = 20;
+Sun[] SunTrail;    // Array for SunTrail
+
+
 void setup() {
   size(1500, 1500);    // Canvas size
 
