@@ -33,10 +33,10 @@ int [] Rays = new int[4];    // Array for rays
 
 float [] colour = new float[4];    // Array for colour
 {    // Bestemmer hvilke værdier hver colour skal være
- colour[0] = random(0, 255);
- colour[1] = random(0, 255);
- colour[2] = random(0, 255);
- colour[3] = random(0, 255);
+  colour[0] = random(0, 255);
+  colour[1] = random(0, 255);
+  colour[2] = random(0, 255);
+  colour[3] = random(0, 255);
 }
 
 void setup() {
@@ -77,6 +77,13 @@ void setup() {
   // Frmekaldning af mySun
   Suns[0] = new Sun(xPosition[4], yPosition[4], SunRadius[0], sc, rc, Rays[0]);
   Suns[1] = new Sun(xPosition[5], yPosition[5], SunRadius[1], sc, rc, Rays[1]);
+
+  // Fremkaldning af SunTrail
+  SunTrail = new Sun[50];    // Siger at SunTrail er lig med 50x Sun objekter
+
+  for (int i = 0; i < num; i++) {    // Fortæller at i begynder som 0, men er mindre end [num], og hver gang er i = i + 1
+    SunTrail[i] = new Sun(xPosition[4], yPosition[4], SunRadius[0], sc, rc, Rays[0]);    // Fortæller at hver eneste SunTrail[i] har disse bestemte værdier
+  }
 }
 
 void draw() {
@@ -103,6 +110,19 @@ void draw() {
     background(colour[2]);
   } else if (d3 <= SF3) {    // If else funktion for hvad der sker når Suns[0] overlapper med Flowers[3]
     background(colour[3]);
+  }
+
+  // Sammensætning af SunTrail 
+  for (int i = num - 1; i > 0; i--) {
+    SunTrail[i].x = SunTrail[i-1].x;
+    SunTrail[i].y = SunTrail[i-1].y;
+  }
+
+  SunTrail[0].x = mouseX;
+  SunTrail[0].y = mouseY;
+  
+  for (int i = 0; i < num; i++) {
+    SunTrail[i].display();
   }
 
   // Sammensætning af Suns[0]
