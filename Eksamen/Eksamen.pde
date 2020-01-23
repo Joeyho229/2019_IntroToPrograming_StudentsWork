@@ -17,10 +17,15 @@ SoundFile[] halfNote = {halfNoteC, halfNoteD, halfNoteF, halfNoteG, halfNoteA};
 PImage curtain, chordC, chordCSharp, chordD, chordDSharp, chordE, chordF, chordFSharp, chordG, chordGSharp, chordA, chordASharp, chordB;         // Declaring datatypes for variables
 
 int score = 0;                                                                                                                                   // Declaring the score variable to be of datatype integer and giving it a value
-String scoreText = "Amount of notes played:";                                                                                              
+String scoreText = "Amount of notes played:";
 int scoreX = 25;                                                                                                                           
 int scoreY = 50;                                                                                                                                
-int scoreSize = 32;                                                                                                                         
+int scoreSize = 32;                        
+
+String displayNoteText = "Press enter to display notes";
+String doNotDisplayNoteText = "Press enter to hide notes";
+int displayNoteTextX = 1550;
+color displayNoteTextColour = #F5F5F5;
 
 // Variables for white tangent hitbox
 int[] tangentHitBoxX = {0, 275, 550, 825, 1100, 1375, 1650};                                                                                     // Making an integer array with the variable tangentHitBoxX and giving the different slots a specific value to be loaded later
@@ -63,7 +68,9 @@ color[] letterHalfNoteColour = {#FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF};
 // Variables for visual feedback notes
 float[] chordX = {137.5, 412.5, 687.5, 962.5, 1237.5, 1512.5, 1787.5, tangentHitBoxWidth[0], tangentHitBoxWidth[1] * 2, tangentHitBoxWidth[2] * 4, tangentHitBoxWidth[3] * 5, tangentHitBoxWidth[4] * 6};    
 float[] chordY = {180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180};                                                                                                                    
-int[] imageMode = {CENTER};                                                                                                                                                                      
+int[] imageMode = {CENTER};      
+
+boolean[] displayNotes = {false, true};
 
 
 void setup() {                                                                                                                                   // A void function to return no value. This function only draws the following code 1 time at the start of the program
@@ -116,8 +123,8 @@ void setup() {                                                                  
   for (int i = 0; i < 3; i++) {                                                                                                                  // Loop for giving tangent class variables.
     Tangents[i] = new Tangent(rectX[i], rectY[i], rectSizeX[i], rectSizeY[i], spacing[i], weight[i], loopLimit[i], XValue[i], colour[i]);        // A for loop has a condition, it then executes the code if its true. If false the loop is exited
   }                                                                                                                                              // A while loop has a initialization loop variable, it then has a condition, if condition true -
-                                                                                                                                                 // - it will execute code and then a incrementation of the loop variable will happen. If false it will exit
-                                                                                                                                                 
+  // - it will execute code and then a incrementation of the loop variable will happen. If false it will exit
+
   for (int i = 0; i < 7; i++) {                                                                                                                  // Loop for Hitboxes class giving it variables.
     Hitboxes[i] = new Hitbox(tangentHitBoxX[i], tangentHitBoxY[i], tangentHitBoxWidth[i], tangentHitBoxHeight[i], tangentTransparency[i], tangentHitBoxStroke[i]);
   }
@@ -160,15 +167,16 @@ void setup() {                                                                  
 
 void draw() {                                                                                                                                    // Another function to return no value. This one keeps drawing the included code at a defeault refreshrate of 60
   background(curtain);                                                                                                                           // The background for the canvas, in this situation it is of the image variable curtain loaded earlier in void draw
-
+  fill(keyGuideColour[0]);
   textSize(scoreSize);                                                                                                                           // Declaring the size of text to be of the integer varaible scoreSize
   text(scoreText + score, scoreX, scoreY);                                                                                                       // Declaring the text() function to use different variables as its parameters. String, integer, integer.
+
 
   // Combining classes with custom functions
   for (int i = 0; i < 3; i++) {                                                                                                                  // Loop for Tangent class combined with custom display function. 
     Tangents[i].display();                                                                                                                       // A for loop has a condition, it then executes the code if its true. If false the loop is exited
   }                                                                                                                                              // A while loop has a initialization loop variable, it then has a condition, if condition true -
-                                                                                                                                                 // - it will execute code and then a incrementation of the loop variable will happen. If false it will exit
+  // - it will execute code and then a incrementation of the loop variable will happen. If false it will exit
   for (int i = 0; i < 12; i++) {                                                                                                             
     Hitboxes[i].display();
   }
@@ -188,10 +196,32 @@ void draw() {                                                                   
   for (int i = 0; i < 5; i++) {
     Letters[i+19].display();
   }
+
+  if (displayNotes[0] == true) {
+    for (int i = 0; i < 12; i++) {
+      Chords[i].display();
+      fill(displayNoteTextColour);
+      text(doNotDisplayNoteText, displayNoteTextX, scoreY);
+    }
+  } else if (displayNotes[0] == false) {
+    fill(displayNoteTextColour);
+    text(displayNoteText, displayNoteTextX, scoreY);
+  }
 }
+
 void keyReleased() {                                                                                                                             // Another function with no return value. This one executes when a key is released.
-  score ++;                                                                                                                                      // Everytime a key is released, the integer "score" gets incremented by 1
+  if (keyCode == ENTER) {                                                                                                                        // A if condition to show the notes or not
+    if (displayNotes[0] == false) {
+      displayNotes[0] = true;
+    } else if (displayNotes[0] == true) {
+      displayNotes[0] = false;
+    }
+    return;
+  }
+
+  score ++;                                                                                                                                      // Everytime a key is released, the integer "score" gets incremented by 1  
   println(score);
+
   if (key == 'q') {                                                                                                                              // If condition for when a specific key is pressed and what is to happen if that is true.
     note[0].play();                                                                                                                              // The note[0] values gets loaded and combined with the custom function .display in the specific class
     Chords[0].display();                                                                                                                         // The Chords[0] values gets loaded and combined with the custom function .display in the specific class
